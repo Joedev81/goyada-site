@@ -2,6 +2,7 @@
 
 import Navbar from "@/components/Navbar";
 import { useCart } from "@/context/CartContext";
+import Image from "next/image";
 
 export default function CartPage() {
     const {
@@ -11,57 +12,180 @@ export default function CartPage() {
         decreaseQuantity,
     } = useCart();
 
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const total = cart.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+    );
 
     return (
         <main className="bg-black text-white min-h-screen">
             <Navbar />
 
-            <div className="max-w-5xl mx-auto px-8 py-16">
-                <h1 className="text-6xl font-bold mb-10">CART</h1>
+            <section className="max-w-6xl mx-auto px-6 md:px-10 py-16">
+
+                <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-12">
+                    CART
+                </h1>
+
 
                 {cart.length === 0 ? (
-                    <p>Your cart is empty.</p>
+                    <div className="text-zinc-400 text-lg">
+                        Your cart is empty.
+                    </div>
                 ) : (
-                    <>
-                    <div className="space-y-4">
-                        {cart.map((item) => (
-                            <div
-                             key={item.name}
-                             className="bg-zinc-900 p-6 rounded-xl"
-                            >
-                                <div className="flex justify-between items-center">
-                                    <div>
-                                        <h3 className="text-xl font-semibold">{item.name}</h3>
-                                        <p className="text-zinc-400">KSh{item.price.toLocaleString()}</p>
+
+                    <div className="grid lg:grid-cols-3 gap-10">
+
+
+                        {/* CART ITEMS */}
+
+                        <div className="lg:col-span-2 space-y-6">
+
+                            {cart.map((item) => (
+
+                                <div
+                                    key={`${item.name}-${item.size}`}
+                                    className="bg-zinc-950 border border-zinc-800 rounded-2xl p-5 flex flex-col md:flex-row gap-6"
+                                >
+
+                                    <div className="relative w-full md:w-40 h-52 bg-zinc-900 rounded-xl overflow-hidden">
+
+                                        <Image
+                                            src={item.image}
+                                            alt={item.name}
+                                            fill
+                                            className="object-cover"
+                                        />
+
                                     </div>
-                                <button onClick={() => removeFromCart(item.name)
-                                }
-                                className="text-red-400 hover:text-red-300">Remove</button>
+
+
+                                    <div className="flex-1 flex flex-col justify-between">
+
+
+                                        <div>
+
+                                            <h2 className="text-2xl font-semibold">
+                                                {item.name}
+                                            </h2>
+
+                                            <p className="text-zinc-400 mt-2">
+                                                Size: {item.size}
+                                            </p>
+
+                                            <p className="mt-3 text-lg">
+                                                KSh {item.price.toLocaleString()}
+                                            </p>
+
+                                        </div>
+
+
+
+                                        <div className="flex items-center justify-between mt-6">
+
+
+                                            <div className="flex items-center gap-4">
+
+                                                <button
+                                                    onClick={() => decreaseQuantity(item.name, item.size)}
+                                                    className="w-9 h-9 border border-zinc-700 rounded-full hover:bg-white hover:text-black transition"
+                                                >
+                                                    -
+                                                </button>
+
+
+                                                <span className="text-lg">
+                                                    {item.quantity}
+                                                </span>
+
+
+                                                <button
+                                                    onClick={() => increaseQuantity(item.name, item.size)}
+                                                    className="w-9 h-9 border border-zinc-700 rounded-full hover:bg-white hover:text-black transition"
+                                                >
+                                                    +
+                                                </button>
+
+                                            </div>
+
+
+
+                                            <button
+                                                onClick={() => removeFromCart(item.name, item.size)}
+                                                className="text-red-400 hover:text-red-300 transition"
+                                            >
+                                                Remove
+                                            </button>
+
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                </div>
+
+                            ))}
+
+
+                        </div>
+
+
+
+                        {/* SUMMARY */}
+
+                        <div className="bg-zinc-950 border border-zinc-800 rounded-2xl p-8 h-fit">
+
+
+                            <h2 className="text-2xl font-bold mb-8">
+                                ORDER SUMMARY
+                            </h2>
+
+
+                            <div className="flex justify-between text-zinc-400 mb-4">
+                                <span>
+                                    Items
+                                </span>
+
+                                <span>
+                                    {cart.length}
+                                </span>
+
                             </div>
 
-                            <div className="flex items-center gap-4 mt-6">
-                                <button onClick={() => decreaseQuantity(item.name)
-                                }
-                                className="border border-zinc-700 px-3 py-1">-</button>
 
-                                <span>{item.quantity}</span>
 
-                                <button onClick={() => increaseQuantity(item.name)}
-                                className="border border-zinc-700 px-3 py-1">+</button>
+                            <div className="border-t border-zinc-800 pt-6 flex justify-between">
+
+                                <span className="text-xl">
+                                    Total
+                                </span>
+
+                                <span className="text-2xl font-bold">
+                                    KSh {total.toLocaleString()}
+                                </span>
+
                             </div>
-                            </div>
-                        ))}
+
+
+
+                            <button
+                                className="w-full mt-8 bg-white text-black py-4 rounded-full font-semibold hover:opacity-90 transition"
+                            >
+                                CHECKOUT
+                            </button>
+
+
+                        </div>
+
+
                     </div>
 
-                    <div className="mt-10 border-t border-zinc-800 pt-8">
-                        <h2 className="text-3xl font-bold">Total: KSh{total.toLocaleString()}</h2>
-
-                        <button className="mt-6 bg-white text-black px-8 py-4 hover:opacity-90">CHECKOUT</button>
-                    </div>
-                    </>
                 )}
-            </div>
+
+            </section>
+
         </main>
     );
 }
