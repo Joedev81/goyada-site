@@ -13,6 +13,15 @@ import { completeSoftNavigation } from "next/dist/client/components/segment-cach
 export default function Home() {
   const [loaded, setLoaded] = useState(false);
   const [offset, setOffset] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const heroImages = [
+    "/hero/hero1.jpeg",
+    "/hero/hero2.jpeg",
+    "/hero/hero3.jpeg",
+    "/hero/hero4.jpeg",
+    "/hero/hero5.jpeg",
+  ];
 
   type Product = {
     name: string;
@@ -54,6 +63,11 @@ export default function Home() {
 
     window.addEventListener("scroll", handleScroll);
 
+    const slider = setInterval(() => {
+      setCurrentSlide((prev) =>
+        (prev + 1) % heroImages.length);
+    }, 7000);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -67,10 +81,13 @@ export default function Home() {
       <section className="relative h-screen flex items-center justify-center">
 
         {/* Background Overlay */}
-        <div className="absolute inset-0 bg-[url('/hero.jpg')] bg-cover bg-center opacity-40"
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-40 transition-all duration-1000"
           style={{
-            transform: `translateY(${offset}px)`,
-          }} />
+            backgroundImage: `url(${ heroImages[currentSlide]})`,
+            transform: `translateY(${ offset }px)`,
+          }}
+        />
 
         {/* Dark gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/70 to-black" />
@@ -85,10 +102,32 @@ export default function Home() {
           <p className="mt-4 text-zinc-400 tracking-wide text-sm md:text-base">Minimal. Dark. Elevated fashion.</p>
 
           {/* CTA */}
-          <button className="mt-10 px-8 py-3 border border-white/30 hover:border-white transition uppercase tracking-widest text-xs hover:bg-white hover:text-black">Shop Now</button>
-
+          <Link
+            href="/shop"
+            className="mt-10 inline-block px-8 py-3 border border-white/30 hover:border-white transition uppercase
+             tracking-widest text-xs hover:bg-white hover:text-black"
+          >
+            SHOP NOW
+          </Link>
         </div>
       </section>
+
+      {/* SLIDE INDICATOR */}
+      <div className="flex justify-center gap-3 mt-10">{heroImages.map((_, index) => (
+
+        <button
+          key={index}
+          onClick={() => setCurrentSlide(index)}
+          className={`h-[2px] transition-all duration-500
+            ${
+              currentSlide === index
+              ? "w-10 bg-white"
+              : "w-4 bg-white/40"
+            }`}
+            aria-label={`Slide ${index + 1}`}
+      />
+      ))}
+        </div>
 
       {/* FEATURE SECTION */}
       <FadeIn>
