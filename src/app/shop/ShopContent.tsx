@@ -145,23 +145,23 @@ export default function ShopContent() {
 
       {/* HERO */}
       <section
-        className={`text-center pt-28 pb-16 px-6 transition-all duration-700 ${
+        className={`text-center pt-24 md:pt-28 pb-12 md:pb-16 px-5 md:px-6 transition-all duration-700 ${
           loaded
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-6"
         }`}
       >
-        <h1 className="text-5xl md:text-6xl font-light tracking-[0.3em] uppercase">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-light tracking-[0.18em] md:tracking-[0.3em] uppercase">
           Collection
         </h1>
 
-        <p className="text-zinc-400 mt-4">
+        <p className="text-zinc-400 mt-4 px-4 max-w-xl mx-auto text-sm md:text-base">
           Premium streetwear built for identity and confidence.
         </p>
       </section>
 
       {/* SEARCH */}
-      <section className="px-6 mb-8">
+      <section className="px-5 md:px-6 mb-8">
         <div className="max-w-6xl mx-auto">
           <input
             value={search}
@@ -169,18 +169,17 @@ export default function ShopContent() {
             placeholder="Search products..."
             className="
               w-full
-              px-5
-              py-4
+              px-4 md:px-5
+              py-3 md:py-4
               rounded-xl
               bg-zinc-900
               border
               border-zinc-700
               outline-none
+              text-sm md:text-base
               transition-all
               duration-300
               focus:border-white
-              focus:scale-[1.01]
-              focus:shadow-lg
             "
           />
         </div>
@@ -188,7 +187,7 @@ export default function ShopContent() {
 
       {/* CATEGORIES */}
       <section className="px-6 mb-10">
-        <div className="max-w-6xl mx-auto flex gap-3 overflow-x-auto">
+        <div className="max-w-6xl mx-auto flex gap-3 overflow-x-auto scrollbar-hide pb-2">
          {categories.map((cat, i) => (
             <button
               key={cat}
@@ -202,7 +201,7 @@ export default function ShopContent() {
                 }
               }}
               className={`
-                px-5 py-2 rounded-full whitespace-nowrap
+                px-4 md:px-5 py-2 text-sm md:text-base rounded-full whitespace-nowrap
                 transition-all duration-300
                 active:scale-95
                 hover:scale-105
@@ -224,7 +223,7 @@ export default function ShopContent() {
 
       {/* PRODUCTS GRID */}
       <section className="px-6 pb-24">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {filteredProducts.map((product, i) => (
             <div
               key={product.name}
@@ -245,7 +244,7 @@ export default function ShopContent() {
                 transitionDelay: `${i * 60}ms`,
               }}
             >
-              <div className="relative h-80 overflow-hidden">
+              <div className="relative h-56 sm:h-72 md:h-80 overflow-hidden">
                 <Image
                   src={product.image}
                   alt={product.name}
@@ -259,16 +258,16 @@ export default function ShopContent() {
                   "
                 />
 
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-500 flex items-center justify-center">
+                <div className="hidden md:flex absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-500 items-center justify-center">
                   <p className="opacity-0 group-hover:opacity-100 tracking-widest text-sm transition-all duration-500">
                     VIEW PRODUCT
                   </p>
                 </div>
               </div>
 
-              <div className="p-5">
-                <h3 className="text-lg">{product.name}</h3>
-                <p className="text-zinc-400 mt-1">{product.price}</p>
+              <div className="p-4 md:p-5">
+                <h3 className="text-base md:text-lg">{product.name}</h3>
+                <p className="text-zinc-400 mt-1 text-sm md:text-base">{product.price}</p>
               </div>
             </div>
           ))}
@@ -276,7 +275,7 @@ export default function ShopContent() {
 
         {filteredProducts.length === 0 && (
           <div className="text-center py-20">
-            <h3 className="text-2xl text-zinc-500">No products found.</h3>
+            <h3 className="text-xl md:text-2xl text-zinc-500">No products found.</h3>
             <p className="mt-2 text-zinc-600">
               Try another category or search term.
             </p>

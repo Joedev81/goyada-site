@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useCart } from "@/context/CartContext";
+import Image from "next/image";
 
 type Product = {
   name: string;
@@ -24,14 +25,15 @@ export default function ProductModal({
   const [size, setSize] = useState("M");
   const { addToCart } = useCart();
 
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  }, [open]);
+ useEffect(() => {
+  document.body.style.overflow = open ?
+  "hidden" :  "auto";
 
+  return () => {
+    document.body.style.overflow = "auto";
+  };
+ }, [open]);
+ 
   if (!open) return null;
 
   const handleAddToCart = () => {
@@ -55,21 +57,44 @@ export default function ProductModal({
       />
 
       {/* Modal */}
-      <div className="relative w-[90%] md:w-[900px] bg-zinc-950 text-white flex flex-col md:flex-row overflow-hidden shadow-2xl border border-zinc-800 animate-fadeIn">
+      <div className="
+      relative
+      w-[95%]
+      max-w-[900px]
+      max-h-[90vh]
+      overflow-y-auto
+      bg-zinc-950
+      text-white
+      flex
+      flex-col
+      md:flex-row
+      rounded-2xl
+      shadow-2xl
+      border
+      border-zinc-800
+      animate-fadeIn
+      ">
+        <button
+           onClick={onClose}
+           className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 hover:bg-black transition text-white text-xl"
+        >
+          ✕
+        </button>
 
         {/* Image */}
-        <div className="md:w-1/2 bg-zinc-900">
-          <img
+        <div className="relative w-full h-72 sm:h-96 md:h-auto md:min-h-[600px]">
+          <Image
             src={product.image}
-            className="w-full h-full object-cover"
+            alt={product.name}
+            fill
+            className="object-cover"
           />
         </div>
-
         {/* Details */}
-        <div className="md:w-1/2 p-6 flex flex-col justify-between">
+        <div className="w-full md:w-1/2 p-5 md:p-8 flex flex-col justify-between">
 
           <div>
-            <h2 className="text-2xl tracking-wide uppercase">
+            <h2 className="text-xl md:text-2xl tracking-wide uppercase">
               {product.name}
             </h2>
 
@@ -88,7 +113,7 @@ export default function ProductModal({
                   <button
                     key={s}
                     onClick={() => setSize(s)}
-                    className={`px-4 py-2 border transition ${
+                    className={`px-3 md:px-4 py-2 text-sm md:text-base border transition ${
                       size === s
                         ? "border-white bg-white text-black"
                         : "border-zinc-700 text-white hover:border-white"
@@ -102,7 +127,7 @@ export default function ProductModal({
           </div>
 
           {/* Actions */}
-          <div className="mt-8">
+          <div className="mt-8 space-y-3">
             <button
               onClick={handleAddToCart}
               className="w-full bg-white text-black py-3 uppercase tracking-widest hover:bg-zinc-200 transition"
@@ -112,7 +137,7 @@ export default function ProductModal({
 
             <button
               onClick={onClose}
-              className="w-full mt-3 text-zinc-500 hover:text-white text-sm"
+              className="w-full text-zinc-500 hover:text-white text-sm"
             >
               Close
             </button>
