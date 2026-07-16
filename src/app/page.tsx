@@ -7,7 +7,6 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import FadeIn from "@/components/FadeIn";
 import ProductModal from "@/components/ProductModal";
-import { completeSoftNavigation } from "next/dist/client/components/segment-cache/navigation";
 
 
 export default function Home() {
@@ -70,6 +69,7 @@ export default function Home() {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      clearInterval(slider);
     };
   }, []);
 
@@ -98,21 +98,18 @@ export default function Home() {
         >
 
           {/* Brand */}
-          <h1 className="text-5xl md:text-7xl tracking-[0.3em] font-light uppercase">GOYADA</h1>
-          <p className="mt-4 text-zinc-400 tracking-wide text-sm md:text-base">Minimal. Dark. Elevated fashion.</p>
+          <h1 className="text-5xl md:text-7xl tracking-[0.2em] md:tracking-[0.3em] font-light uppercase px-4">GOYADA</h1>
+          <p className="mt-4 text-zinc-400 tracking-wide text-sm md:text-base max-w-xl mx-auto">Minimal. Dark. Elevated fashion.</p>
 
           {/* CTA */}
           <Link
             href="/shop"
-            className="mt-10 inline-block px-8 py-3 border border-white/30 hover:border-white transition uppercase
-             tracking-widest text-xs hover:bg-white hover:text-black"
+            className="mt-10 inline-block px-6 md:px-8 py-3 border border-white/30 hover:border-white transition uppercase tracking-[0.2em] text-xs md:text-sm hover:bg-white hover:text-black"
           >
             SHOP NOW
           </Link>
-        </div>
-      </section>
 
-      {/* SLIDE INDICATOR */}
+            {/* SLIDE INDICATOR */}
       <div className="flex justify-center gap-3 mt-10">{heroImages.map((_, index) => (
 
         <button
@@ -128,16 +125,18 @@ export default function Home() {
       />
       ))}
         </div>
+        </div>
+      </section>
 
       {/* FEATURE SECTION */}
       <FadeIn>
-        <section className="py-24 px-6 md:px-20 bg-black">
-          <div className="flex items-center justify-between mb-10">
+        <section className="py-16 md:py-24 px-5 md:px-20 bg-black">
+          <div className="flex items-center justify-between mb-8 md:mb-10">
             <h2 className="text-sm tracking-[0.3em] text-zinc-500">
               FEATURED PIECES
             </h2>
 
-            <div className="flex gap-3">
+            <div className="hidden md:flex gap-3">
               <button
                 onClick={scrollLeft}
                 className="w-10 h-10 rounded-full border border-zinc-700 hover:border-white hover:bg-white hover:text-black transition"
@@ -182,9 +181,9 @@ export default function Home() {
                     category: "Hoodies",
                   })
                 }
-                className="group cursor-pointer min-w-[320px] md:min-w-[320px] flex-shrink-0 snap-start"
+                className="group cursor-pointer min-w-[260px] sm:min-w-[300px] md:min-w-[320px] flex-shrink-0 snap-start"
               >
-                <div className="relative h-[420px] overflow-hidden rounded-xl bg-zinc-900">
+                <div className="relative h-[340px] sm:h-[380px] md:h-[420px] overflow-hidden rounded-xl bg-zinc-900">
                   <Image
                     src="/products/shadow-hoodie.jpeg"
                     alt="Shadow Hoodie"
@@ -193,7 +192,7 @@ export default function Home() {
                   />
                 </div>
 
-                <h3 className="mt-4 text-lg">Shadow Hoodie</h3>
+                <h3 className="mt-4 text-base md:text-lg">Shadow Hoodie</h3>
                 <p className="text-zinc-400">Ksh 3000</p>
               </div>
 
@@ -208,9 +207,9 @@ export default function Home() {
                     category: "T-Shirts",
                   })
                 }
-                className="group cursor-pointer min-w-[320px] md:min-w-[320px] flex-shrink-0 snap-start"
+                className="group cursor-pointer min-w-[260px] sm:min-w-[300px] md:min-w-[320px] flex-shrink-0 snap-start"
               >
-                <div className="relative w-[320px] h-[420px] overflow-hidden rounded-xl bg-zinc-900">
+                <div className="relative w-[320px] h-[420px] sm:h-[380px] md:h-[420px] overflow-hidden rounded-xl bg-zinc-900">
                   <Image
                     src="/products/tee.jpeg"
                     alt="Void Tee"
@@ -219,7 +218,7 @@ export default function Home() {
                   />
                 </div>
 
-                <h3 className="mt-4 text-lg">Void Tee</h3>
+                <h3 className="mt-4 text-base md:text-lg">Void Tee</h3>
                 <p className="text-zinc-400">Ksh 2000</p>
               </div>
 
@@ -235,9 +234,9 @@ export default function Home() {
                     category: ""
                   })
                 }
-                className="group cursor-pointer min-w-[320px] md:min-w-[320px] flex-shrink-0 snap-start"
+                className="group cursor-pointer min-w-[260px] sm:min-w-[300px] md:min-w-[320px] flex-shrink-0 snap-start"
               >
-                <div className="relative w-[320px] h-[420px] overflow-hidden rounded-xl bg-zinc-900">
+                <div className="relative w-[320px] h-[420px] sm:h-[380px] md:h-[420px] overflow-hidden rounded-xl bg-zinc-900">
                   <Image
                     src="/products/joggers.jpeg"
                     alt="Blackline Joggers"
@@ -246,7 +245,7 @@ export default function Home() {
                   />
                 </div>
 
-                <h3 className="mt-4 text-lg">Blackline Joggers</h3>
+                <h3 className="mt-4 text-base md:text-lg">Blackline Joggers</h3>
                 <p className="text-zinc-400">Ksh 2800</p>
               </div>
 
@@ -261,9 +260,9 @@ export default function Home() {
                     category: "Jackets",
                   })
                 }
-                className="group cursor-pointer min-w-[320px] md:min-w-[320px] flex-shrink-0 snap-start"
+                className="group cursor-pointer min-w-[260px] sm:min-w-[300px] md:min-w-[320px] flex-shrink-0 snap-start"
               >
-                <div className="relative w-[320px] h-[420px] overflow-hidden rounded-xl bg-zinc-900">
+                <div className="relative w-[320px] h-[420px] sm:h-[380px] md:h-[420px] overflow-hidden rounded-xl bg-zinc-900">
                   <Image
                     src="/products/night-jacket.jpeg"
                     alt="Night Jacket"
@@ -272,7 +271,7 @@ export default function Home() {
                   />
                 </div>
 
-                <h3 className="mt-4 text-lg">Night Jacket</h3>
+                <h3 className="mt-4 text-base md:text-lg">Night Jacket</h3>
                 <p className="text-zinc-400">Ksh 3000</p>
               </div>
 
@@ -287,9 +286,9 @@ export default function Home() {
                     category: "Knitwear",
                   })
                 }
-                className="group cursor-pointer min-w-[320px] md:min-w-[320px] flex-shrink-0 snap-start"
+                className="group cursor-pointer min-w-[260px] sm:min-w-[300px] md:min-w-[320px] flex-shrink-0 snap-start"
               >
-                <div className="relative w-[320px] h-[420px] overflow-hidden rounded-xl bg-zinc-900">
+                <div className="relative w-[320px] h-[420px] sm:h-[380px] md:h-[420px] overflow-hidden rounded-xl bg-zinc-900">
                   <Image
                     src="/products/pink-knit.jpeg"
                     alt="Pink Knit"
@@ -298,7 +297,7 @@ export default function Home() {
                   />
                 </div>
 
-                <h3 className="mt-4 text-lg">Pink Knit</h3>
+                <h3 className="mt-4 text-base md:text-lg">Pink Knit</h3>
                 <p className="text-zinc-400">Ksh 2500</p>
               </div>
 
@@ -313,9 +312,9 @@ export default function Home() {
                     category: "T-Shirt",
                   })
                 }
-                className="group cursor-pointer min-w-[320px] md:min-w-[320px] flex--shrink-0 snap-start"
+                className="group cursor-pointer min-w-[260px] sm:min-w-[300px] md:min-w-[320px] flex--shrink-0 snap-start"
               >
-                <div className="relative w-[320px] h-[420px] overflow-hidden rounded-xl bg-zinc-900">
+                <div className="relative w-[320px] h-[420px] sm:h-[380px] md:h-[420px] overflow-hidden rounded-xl bg-zinc-900">
                   <Image
                     src="/products/grey-wash-tee.jpeg"
                     alt="Gray Wash Tee"
@@ -324,7 +323,7 @@ export default function Home() {
                   />
                 </div>
 
-                <h3 className="mt-4 text-lg">Gray Wash Tee</h3>
+                <h3 className="mt-4 text-base md:text-lg">Gray Wash Tee</h3>
                 <p className="text-zinc-400">Ksh 1500</p>
               </div>
 
