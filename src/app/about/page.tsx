@@ -26,25 +26,25 @@ export default function AboutPage() {
     }, []);
 
     return (
-        <main className="bg-black text-gray-900 min-h-screen">
+        <main className="bg-black text-white min-h-screen">
             <Navbar />
 
             {/* Hero Section */}
-            <section className="bg-black text-white py-20 px-6">
+            <section className="bg-black text-white pt-28 pb-20 px-5 md:px-6">
                 <div className="max-w-5xl mx-auto text-center">
-                    <h1 className="text-4xl md:text--6xl font-bold tracking-tight">About GOYADA</h1>
-                    <p className="mt-6 text-lg md:text-xl text-gray-300">Redefining modern fashion with bold streetwear, premium quality and timeless design.</p>
+                    <h1 className="text-3xl sm:text-4xl md:text-6xl md:text-6xl font-bold tracking-tight">About GOYADA</h1>
+                    <p className="mt-6 text-base md:text-xl text-gray-300">Redefining modern fashion with bold streetwear, premium quality and timeless design.</p>
                 </div>
             </section>
 
             {/* Our Story */}
             <section className="py-16 px-6">
-                <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+                <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
 
                     <div>
                         <h2 className="text-3xl font-bold mb-4">Our Story</h2>
                         <p className="text-gray-600 leading-relaxed">
-                            GOYADA was a built with a vision to create clothing that speaks confidence, individuality
+                            GOYADA was built with a vision to create clothing that speaks confidence, individuality
                             and culture. What started as a small idea quickly grew into a brand that represents streetwear
                             with meaning.
                             <br /><br />
@@ -54,7 +54,7 @@ export default function AboutPage() {
                     </div>
 
             {/* Slideshow */}
-            <div className="relative h-64 md:h-80 rounded-xl overflow-hidden shadow-lg">
+            <div className="relative h-72 sm:h-80 md:h-96 rounded-xl overflow-hidden shadow-lg">
 
                 <img
                   src={images[index]}
@@ -81,10 +81,10 @@ export default function AboutPage() {
             </section>
 
             {/* Mission Section */}
-            <section className="bg-gray-50 py-16 px-6">
+            <section className="bg-zinc-950 py-16 px-6">
                 <div className="max-w-5xl mx-auto text-center">
                     <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
-                    <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-zinc-400 max-w-3xl mx-auto leading-relaxed">
                         To inspire confidence through fashion. We believe clothing is more than fabric expression.
                         GOYADA exists to help you wear yours proudly.
                     </p>
@@ -95,25 +95,25 @@ export default function AboutPage() {
             <section className="py-16 px-6">
                 <div className="max-w-5xl mx-auto">
                     <h2 className="text-3xl font-bold text-center mb-10">What We Stand For</h2> 
-                    <div className="grid md:grid-cols-3 gap-8">
-                        <div className="p-6 border rounded-xl">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div className="p-6 border border-zinc-800 rounded-2xl bg-zinc-900 hover:border-white transition">
                             <h3 className="font-semibold text-xl mb-2">Quality</h3>
-                            <p className="text-gray-600">
+                            <p className="text-zinc-400">
                                 Every piece is created with durable materials and attention to detail.
                             </p>
                         </div>
 
                         <div className="p-6 border rounded-xl">
-                            <h3 className="font-semibold text-xl mb-2">Identy</h3>
-                            <p className="text-gray-600">
+                            <h3 className="font-semibold text-xl mb-2">Identity</h3>
+                            <p className="text-zinc-400">
                                 We design for people who want to stand out and express themselves.
                             </p>
                         </div>
 
                         <div className="p-6 border rounded-xl">
                             <h3 className="font-semibold text-xl mb-2">Growth</h3>
-                            <p className="text-gray-600">
-                                GOYADA is more than a brand-it's a movement that keeps evolving.
+                            <p className="text-zinc-400">
+                                GOYADA is more than a brand. It's a movement that keeps evolving.
                             </p>
                         </div>
 
@@ -126,7 +126,7 @@ export default function AboutPage() {
                 <h2 className="text-3xl font-bold">Join the GOYADA Movement</h2>
                 <p className="text-gray-300 mt-3">Wear your identity. Build your style.</p>
                 <Link href="/shop">
-                <button className="mt-6 px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition">
+                <button className="mt-6 px-6 py-3 border border-white uppercase tracking-[0.2em] hover:bg-white hover:text-black transition">
                     Shop Now
                 </button>
                 </Link>

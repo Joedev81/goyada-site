@@ -13,20 +13,23 @@ export default function ContactPage() {
   }, []);
 
   return (
-    <main className="bg-black yexy-white min-h-screen">
+    <main className="bg-black text-white min-h-screen">
       <Navbar />
 
       {/* HERO */}
       <FadeIn>
-      <section className={`pt-36 pb-24 px-6 transition-all duration-1000 ${
-        loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      }`}
-    >
+      <section
+        className={`pt-28 md:pt-36 pb-16 md:pb-24 px-5 md:px-6 transition-all duration-1000 ${
+          loaded
+             ? "opacity-100 translate-y-0"
+             : "opacity-0 translate-y-8"
+        }`}
+      >
       <div className="max-w-6xl mx-auto text-center">
         <p className="uppercase tracking-[0.4em] text-zinc-500 text-xs mb-4">Contact</p>
 
-        <h1 className="text-5xl md:text-7xl font-light tracking-[0.2em] uppercase">Let's Talk</h1>
-        <p className="mt-8 text-zinc-400 max-w-2xl mx-auto leading-8">Whether you have a question, collaboration ideas or simply
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-light tracking-[0.2em] uppercase">Let's Talk</h1>
+        <p className="mt-8 md:mt-8 text-zinc-400 text-sm md:text-base max-w-2xl mx-auto leading-7 md:leading-8">Whether you have a question, collaboration ideas or simply
           want to connect with GOYADA, we'd love to hear from you.
         </p>
       </div>
@@ -36,7 +39,7 @@ export default function ContactPage() {
     {/* CONTACT INFO */}
     <FadeIn>
     <section className="px-6 pb-24">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {[
           {
             title: "Email",
@@ -84,10 +87,11 @@ export default function ContactPage() {
           <p className="mt-4 text-zinc-500">We'd love to hear from you.</p>
         </div>
 
-        <div className="relative">
+        <div className="relative space-y-6">
           <input
             type="text"
             id="name"
+            placeholder=" "
             className="peer w-full bg-zinc-900 border border-zinc-800 rounded-xl px-5 pt-6 pb-3 outline-none focus:border-white focus:shadow-[0_0_20px_rgba(255,255,255,0.08)] transition"/>
 
           <label
@@ -102,7 +106,7 @@ export default function ContactPage() {
           </label>
           </div>
 
-          <div className="relative">
+          <div className="relative space-y-6">
             <input
               type="email"
               id="email"
@@ -121,9 +125,9 @@ export default function ContactPage() {
             </label>
           </div>
 
-          <div className="relative">
+          <div className="relative space-y-6">
             <input
-             type="email"
+             type="text"
              id="subject"
              placeholder=" "
              className="peer w-full bg-zinc-900 border border-zinc-800 rounded-xl px-5 pt-6 pb-3 outline-none focus:border-white focus:shadow-[0_0_20px_rgba(255,255,255,0.08)] transition"/>
@@ -141,7 +145,7 @@ export default function ContactPage() {
 
           </div>
 
-        <div className="relative">
+        <div className="relative space-y-6">
           <textarea
             id="message"
             rows={6}
@@ -175,7 +179,7 @@ export default function ContactPage() {
       <div className="max-w-5xl mx-auto text-center">
         <p className="uppercase tracking-[0.4em] text-zinc-500 text-xs mb-8">Follow GOYADA</p>
 
-        <div className="flex flex-wrap justify-center gap-8 text-lg">
+        <div className="flex flex-wrap justify-center gap-5 md:gap-8 text-base md:text-lg">
           <a href="https://instagram.com/real_goyada"
           target="_blank"
           rel="noopener noreferrer"
@@ -196,12 +200,12 @@ export default function ContactPage() {
       href="https://wa.me/254740619823"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-green-500 flex items-center justify-center shadow-2xl hover:scale-110 transition-all duration-300">
+      className="fixed bottom-6 right-5 md:bottom-6 md:right-6 z-50 w-14 h-14 md:w-16 md:h-16">
 
         <svg 
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 32 32"
-          className="w-8 h-8 fill-white">
+          className="w-7 h-7 md:w-8 md:h-8 fill-white">
             <path d="M16.001 3C8.832 3 3 8.732 3 15.781c0 2.489.744 4.9 2.156 6.969L3.75 29l6.438-1.375a13.08 13.08 0 005.813 1.375c7.168 0 13-5.732 13-12.781S23.169 3 16.001
              3zm0 23.406a10.8 10.8 0 01-5.5-1.5l-.394-.219-3.813.813.813-3.719-.25-.406a10.54 10.54 0 01-1.656-5.594c0-5.844 4.844-10.594 10.8-10.594 5.938 0 10.781 4.75 10.781 
              10.594s-4.843 10.625-10.781 10.625zm5.906-7.969c-.313-.156-1.844-.906-2.125-1s-.5-.156-.719.156c-.219.313-.813 1-.969 1.188s-.344.219-.656.063c-.313-.156-1.313-.469-2.5

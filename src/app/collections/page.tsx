@@ -64,16 +64,16 @@ export default function CollectionsPage() {
                }`}
             >
                 <p className="tracking-[0.4em] uppercase text-zinc-500 text-sm">GOYADA</p>
-                <h1 className="mt-4 text-5xl md:text-7xl font-light tracking-[0.25em] uppercase">Collections</h1>
+                <h1 className="mt-4 text-4xl sm:text-5xl md:text-7xl font-light tracking-[0.15em] md:tracking-[0.25em] uppercase">Collections</h1>
 
-                <p className="mt-6 text-zinc-400 max-w-2xl mx-auto leading-7">Explore every GOYADA collections. From essentials,
+                <p className="mt-6 text-sm md:text-base text-zinc-400 max-w-2xl mx-auto leading-7 px-2">Explore every GOYADA collections. From essentials,
                     discover pieces crafted for modern streetwear.
                 </p>
             </section>
 
             {/* COLLECTION GRID */}
             <section className="px-6 pb-24">
-                <div className="max-w-7xl mx-auto grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+                <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
 
                     {collections.map((collection, i) => (
                         <Link
@@ -86,7 +86,7 @@ export default function CollectionsPage() {
                           style={{transitionDelay: `${i * 80}ms`,}}
                         >
                             {/* Image */}
-                            <div className="relative h-[480px] overflow-hidden">
+                            <div className="relative h-[360px] sm:h-[480px] overflow-hidden">
                                 <Image 
                                    src={collection.image}
                                    alt={collection.name}
@@ -100,9 +100,9 @@ export default function CollectionsPage() {
                                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500" />
 
                                    {/* Text */}
-                                   <div className="absolute bottom-0 left-0 right-0 p-8">
-                                    <h2 className="text-3xl font-light tracking-widest uppercase">{collection.name}</h2>
-                                    <p className="mt-3 text-zinc-300 text-sm leading-6">{collection.description}</p>
+                                   <div className="absolute bottom-0 left-0 right-0 p-5 md:p-8">
+                                    <h2 className="text-2xl md:text-3xl font-light tracking-widest uppercase">{collection.name}</h2>
+                                    <p className="mt-3 text-sm text-zinc-300 leading-6">{collection.description}</p>
                                     <div className="mt-6 inline-flex items-center gap-2 text-sm group-hover:translate-x-2 transition-transform duration-300">Explore →</div>
                                    </div>
                             </div>
@@ -115,15 +115,15 @@ export default function CollectionsPage() {
             <section className="border-t border-zinc-800 py-24 px-6">
                 <div className="max-w-4xl mx-auto text-center">
                     <p className="tracking-[0.3em] uppercase text-zinc-500 text-sm">GOYADA</p>
-                    <h2 className="mt-5 text-4xl md:text-5xl font-light uppercase tracking-[0.15em]">Wear Confidence</h2>
+                    <h2 className="mt-5 text-3xl sm:text-4xl md:text-5xl font-light uppercase tracking-[0.1em] md:tracking-[0.15em]">Wear Confidence</h2>
 
-                    <p className="mt-6 text-zinc-400 leading-7 max-w-2xl mx-auto">Every GOYADA collection is designed to combine minimal aesthetics,
+                    <p className="mt-6 text-sm md:text-base text-zinc-400 leading-7 max-w-2xl mx-auto px-2">Every GOYADA collection is designed to combine minimal aesthetics,
                         premium craftmanship and everyday comfort. Find the pieces that define your style.
                     </p>
 
                     <Link
                       href="/shop"
-                      className="inline-block mt-10 border border-white px-8 py-3 uppercase tracking-[0.25em] text-sm transition-all duration-300 hover:bg-white hover-text-black hover:scale-105">Shop All</Link>
+                      className="inline-block mt-10 border border-white px-6 md:px-8 py-3 uppercase tracking-[0.2em] text-xs md:text-sm transition-all duration-300 hover:bg-white hover-text-black hover:scale-105">Shop All</Link>
 
                 </div>
             </section>
